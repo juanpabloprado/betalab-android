@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "932678776749",
+    "firebase_url": "https://betalabs-14933.firebaseio.com",
+    "project_id": "betalabs-14933",
+    "storage_bucket": "betalabs-14933.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932678776749:android:cb2763fc6bf38ae4",
+        "android_client_info": {
+          "package_name": "com.betalab.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932678776749-j3duuohnfckig6gdpfts9osnro3avpel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxPLHb304DrJZQFWnceK4ni6FiUVfPz_I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
