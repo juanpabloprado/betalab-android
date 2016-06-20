@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       }
 
       @Override public void onCancelled(DatabaseError databaseError) {
-
+        Log.d(TAG, "onCancelled() called with: " + "databaseError = [" + databaseError + "]");
       }
     });
 
