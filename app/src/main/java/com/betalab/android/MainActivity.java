@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import butterknife.BindView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   FirebaseDatabase database;
   DatabaseReference myRef;
+
+  @BindView(R.id.bt1) Button firstButton;
+  @BindView(R.id.bt2) Button secondButton;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       }
     });
 
-    findViewById(R.id.bt1).setOnClickListener(this);
-    findViewById(R.id.bt2).setOnClickListener(this);
+    firstButton.setOnClickListener(this);
+    secondButton.setOnClickListener(this);
   }
 
   @Override public void onClick(View v) {
