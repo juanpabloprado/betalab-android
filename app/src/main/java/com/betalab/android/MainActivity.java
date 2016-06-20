@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   @Override public void onClick(View v) {
     switch (v.getId()) {
       case R.id.bt1:
+        String string = ((EditText) findViewById(R.id.et1)).getText().toString();
 
-        myRef.setValue("Hello, World!");
+        myRef.setValue(string);
         Toast.makeText(MainActivity.this, "Data written!", Toast.LENGTH_SHORT).show();
         break;
       case R.id.bt2:
