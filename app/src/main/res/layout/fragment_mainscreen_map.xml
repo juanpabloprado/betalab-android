@@ -19,6 +19,7 @@
       android:layout_alignParentBottom="true"
       android:background="#Dfff"
       android:orientation="horizontal"
+      android:visibility="gone"
       >
 
     <ImageView

@@ -23,6 +23,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,10 +39,45 @@ import java.util.Random;
 public class MainScreenMapFragment extends Fragment
     implements OnMapReadyCallback, View.OnClickListener {
   private static final String TAG = "MainScreenMapFragment";
-
   private GoogleMap mMap;
-
+  private DatabaseReference mDatabaseReference;
   private Map<Marker, Incidence> incidenceMap;
+  private ArrayList<Incidence> incidences = new ArrayList<>();
+  private ChildEventListener childEventListener = new ChildEventListener() {
+    @Override public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+      Log.d(TAG, "onChildAdded() called with: "
+          + "dataSnapshot = ["
+          + dataSnapshot
+          + "], s = ["
+          + s
+          + "]");
+
+      Incidence incidence = dataSnapshot.getValue(Incidence.class);
+      incidences.add(incidence);
+
+      if (mMap != null) {
+        loadGooglePins(mMap);
+      }
+
+      //Log.d(TAG, "onChildAdded: " + incidence.getHistory().size());
+    }
+
+    @Override public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+    }
+
+    @Override public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override public void onCancelled(DatabaseError databaseError) {
+
+    }
+  };
 
   @Nullable @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,6 +87,9 @@ public class MainScreenMapFragment extends Fragment
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    mDatabaseReference.addChildEventListener(childEventListener);
 
     incidenceMap = new HashMap<>();
 
@@ -84,6 +127,8 @@ public class MainScreenMapFragment extends Fragment
 
     googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
       @Override public void onMapClick(LatLng latLng) {
+        Log.d(TAG, "onMapClick() called with: " + "latLng = [" + latLng + "]");
+        getView().findViewById(R.id.ll_main_map).setVisibility(View.GONE);
         //getView().findViewById(ddf)
       }
     });
@@ -139,7 +184,7 @@ public class MainScreenMapFragment extends Fragment
   private void loadGooglePins(GoogleMap googleMap) {
     boolean locationsWereAdded = false;
 
-    ArrayList<Incidence> incidences = getFakeIncidences(5);
+    //ArrayList<Incidence> incidences = getFakeIncidences(5);
 
     final LatLngBounds.Builder builder = LatLngBounds.builder();
 

@@ -26,7 +26,7 @@ public class MainScreenActivity extends AppCompatActivity {
   }
 
   private void setupViewPager() {
-    mainScreenPagerAdapter = new MainScreenPagerAdapter(this, getSupportFragmentManager());
+    mainScreenPagerAdapter = new MainScreenPagerAdapter(getSupportFragmentManager());
     mainScreenViewPager.setAdapter(mainScreenPagerAdapter);
     mainScreenTabLayout.setupWithViewPager(mainScreenViewPager);
     for (int i = 0; i < mainScreenTabLayout.getTabCount(); i++) {

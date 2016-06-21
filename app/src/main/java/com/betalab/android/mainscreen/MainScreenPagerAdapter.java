@@ -1,6 +1,5 @@
 package com.betalab.android.mainscreen;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,22 +7,26 @@ import com.betalab.android.R;
 
 public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
 
-  protected Context mContext;
+  private Fragment[] fragments = new Fragment[3];
 
-  public MainScreenPagerAdapter(Context context, FragmentManager fm) {
+  public MainScreenPagerAdapter(FragmentManager fm) {
     super(fm);
-    mContext = context;
+
+    fragments[0] = new MainScreenMapFragment();
+    //fragments[0].setRetainInstance(true);
+    fragments[1] = new MainScreenListFragment();
+    fragments[2] = new MainScreenProfileFragment();
+    //fragments[2].setRetainInstance(true);
   }
 
   @Override public Fragment getItem(int position) {
     switch (position) {
       case 0:
-        return new MainScreenMapFragment();
+        return fragments[0];
       case 1:
-        return new MainScreenListFragment();
+        return fragments[1];
       case 2:
-        // TODO: 6/21/16 Change this
-        return new TestFirebaseFragment();
+        return fragments[2];
     }
     return null;
   }
