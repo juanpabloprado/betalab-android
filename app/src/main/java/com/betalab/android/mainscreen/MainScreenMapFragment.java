@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import com.betalab.android.R;
 import com.betalab.android.pojos.GeoData;
 import com.betalab.android.pojos.Incidence;
@@ -81,11 +82,21 @@ public class MainScreenMapFragment extends Fragment
 
     loadGooglePins(googleMap);
 
+    googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+      @Override public void onMapClick(LatLng latLng) {
+        //getView().findViewById(ddf)
+      }
+    });
+
     googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
       @Override public boolean onMarkerClick(Marker marker) {
         if (incidenceMap != null && incidenceMap.containsKey(marker)) {
           Incidence incidence = incidenceMap.get(marker);
           // TODO: 6/21/16 Show things and stuff
+          getView().findViewById(R.id.ll_main_map).setVisibility(View.VISIBLE);
+          ((TextView) getView().findViewById(R.id.tv_main_map_title)).setText(incidence.title);
+          ((TextView) getView().findViewById(R.id.tv_main_map_description)).setText(
+              incidence.description);
         }
         return false;
       }

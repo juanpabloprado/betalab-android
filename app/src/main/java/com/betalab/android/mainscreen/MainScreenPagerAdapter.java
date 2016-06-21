@@ -22,7 +22,8 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
       case 1:
         return new MainScreenListFragment();
       case 2:
-        return new MainScreenProfileFragment();
+        // TODO: 6/21/16 Change this
+        return new TestFirebaseFragment();
     }
     return null;
   }

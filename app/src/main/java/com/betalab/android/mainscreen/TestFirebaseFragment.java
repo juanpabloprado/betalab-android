@@ -9,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.betalab.android.R;
 import com.betalab.android.pojos.Incidence;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,61 +39,36 @@ public class TestFirebaseFragment extends Fragment {
 
     mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-/*    mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-      @Override public void onDataChange(DataSnapshot dataSnapshot) {
-        Log.d(TAG, "onDataChange(father) called with: " + "dataSnapshot = [" + dataSnapshot + "]");
+    mDatabaseReference.addChildEventListener(new ChildEventListener() {
+      @Override public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        Log.d(TAG, "onChildAdded() called with: "
+            + "dataSnapshot = ["
+            + dataSnapshot
+            + "], s = ["
+            + s
+            + "]");
 
-        Log.d(TAG, "onDataChange: Data father to string: " + getJSONArray(
-            dataSnapshot.toString()).toString());
+        Incidence incidence = dataSnapshot.getValue(Incidence.class);
 
-        //GenericTypeIndicator
-        ArrayList<Incidence> incidences = (ArrayList<Incidence>) dataSnapshot.getValue();
-        if (incidences != null) {
-          Log.d(TAG, "onDataChange: " + incidences.toString());
-          for (Incidence incidence : incidences) {
-            Log.d(TAG, "onDataChange: " + incidence.toString());
-          }
-        } else {
-          Log.d(TAG, "onDataChange: Could not convert that thing");
-        }
+        //Log.d(TAG, "onChildAdded: " + incidence.getHistory().size());
+      }
 
-        Object object = dataSnapshot.getValue();
-        Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
+      @Override public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-        for (DataSnapshot temp : iterable) {
-          Object object2 = temp.getValue();
-          if (object2 instanceof Boolean) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isBoolean");
-          } else if (object2 instanceof String) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isString");
-          } else if (object2 instanceof Long) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isLong");
-          } else if (object2 instanceof Double) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isDouble");
-          } else if (object2 instanceof Map) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isMap" + ((Map) object2).keySet());
-          } else if (object2 instanceof List) {
-            Log.d(TAG, "onDataChange: " + temp.getKey() + "isList");
-          }
-        }
+      }
+
+      @Override public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+      }
+
+      @Override public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
       }
 
       @Override public void onCancelled(DatabaseError databaseError) {
-        Log.d(TAG, "onCancelled(father) called with: " + "databaseError = [" + databaseError + "]");
-      }
-    })*/;
-    mDatabaseReference.child("betalabs-14933")
-        .addListenerForSingleValueEvent(new ValueEventListener() {
-          @Override public void onDataChange(DataSnapshot dataSnapshot) {
-            Log.d(TAG,
-                "onDataChange(children) called with: " + "dataSnapshot = [" + dataSnapshot + "]");
-          }
 
-          @Override public void onCancelled(DatabaseError databaseError) {
-            Log.d(TAG,
-                "onCancelled(children) called with: " + "databaseError = [" + databaseError + "]");
-          }
-        });
+      }
+    });
   }
 
   private JSONArray getJSONArray(Object[] objects) {
