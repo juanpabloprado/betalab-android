@@ -1,3 +1,33 @@
 <resources>
   <string name="app_name">Betalab Android</string>
+
+  <string name="ok_label">OK</string>
+  <string name="unknown_sign_in_response">Unknown response from AuthUI sign-in</string>
+  <string name="sign_in_cancelled">Sign in cancelled</string>
+  <string name="signed_in_header">You are signed in!</string>
+  <string name="delete_account_label">Delete account</string>
+  <string name="sign_out_failed">Sign out failed</string>
+  <string name="delete_account_failed">Delete account failed</string>
+  <string name="user_profile_header">User profile:</string>
+  <string name="profile_picture_content_desc">Profile picture</string>
+
+  <string name="hint_user_id">User ID</string>
+  <string name="get_custom_token">Get Token</string>
+  <string name="sign_in">Sign In</string>
+  <string name="create_account">Create Account</string>
+  <string name="sign_out">Sign Out</string>
+  <string name="disconnect">Disconnect</string>
+  <string name="loading">Loading…</string>
+  <string name="custom_token">Custom Token</string>
+  <string name="signed_out">Signed Out</string>
+  <string name="token_null">Token: null</string>
+  <string name="hint_email">Email</string>
+  <string name="hint_password">Password</string>
+  <string name="desc_firebase_lockup">Firebase logo and name</string>
+
+  <string name="firebase_status_fmt">Firebase User: %s</string>
+  <string name="firebase_user_management">Firebase User Management</string>
+
+  <string name="google_status_fmt">Google User: %s</string>
+  <string name="google_title_text">Google Sign In</string>
 </resources>
