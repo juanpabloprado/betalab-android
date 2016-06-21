@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.betalab.android.R;
 import com.betalab.android.pojos.GeoData;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -127,6 +129,13 @@ public class MainScreenMapFragment extends Fragment
           ((TextView) getView().findViewById(R.id.tv_main_map_title)).setText(incidence.title);
           ((TextView) getView().findViewById(R.id.tv_main_map_description)).setText(
               incidence.description);
+
+          ((ImageView) getView().findViewById(R.id.iv_main_map_image)).setImageResource(
+              android.R.color.white);
+
+          Picasso.with(getContext())
+              .load(incidence.getPicture())
+              .into((ImageView) getView().findViewById(R.id.iv_main_map_image));
         }
         return false;
       }

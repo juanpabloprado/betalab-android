@@ -23,6 +23,7 @@
       >
 
     <ImageView
+        android:id="@+id/iv_main_map_image"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
