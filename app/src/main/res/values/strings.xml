@@ -38,4 +38,6 @@
   <string name="title_section1">Map</string>
   <string name="title_section2">Feed</string>
   <string name="title_section3">User</string>
+  <string name="avatar_description">Avatar</string>
+  <string name="user_badges_title_text">Badges</string>
 </resources>
