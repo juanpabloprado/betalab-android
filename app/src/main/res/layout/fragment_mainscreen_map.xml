@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <fragment
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/map"
+      android:name="com.google.android.gms.maps.SupportMapFragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+  <!--TODO: Ver el cómo hacer que la parte que se puede arrastrar sea más amplia, por que no manches, es demasiado chica, y el usuario podría no deducir su funcionamiento-->
+  <!--<LinearLayout
+      android:layout_width="60dp"
+      android:layout_height="match_parent"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:background="@android:color/black"
+      />-->
+
+</RelativeLayout>
