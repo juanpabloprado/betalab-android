@@ -32,4 +32,6 @@
 
   <string name="google_status_fmt">Google User: %s</string>
   <string name="google_title_text">Google Sign In</string>
+  <string name="logo_content_description">Logo</string>
+  <string name="facebook_login_button_label">Log in with Facebook</string>
 </resources>

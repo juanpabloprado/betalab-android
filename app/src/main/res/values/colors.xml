@@ -8,4 +8,14 @@
   <color name="grey_300">#E0E0E0</color>
 
   <color name="material_red_a200">#FF5252</color>
+
+  <color name="login_button">#40CCCCCC</color>
+  <color name="login_button_push">#30CCCCCC</color>
+  <color name="login_button_focus">#35CCCCCC</color>
+
+  <color name="facebook_login_button">#3B5998</color>
+  <color name="facebook_login_button_push">#2E4677</color>
+  <color name="facebook_login_button_focus">#304F8B</color>
+
+  <color name="login_display_text">@android:color/white</color>
 </resources>

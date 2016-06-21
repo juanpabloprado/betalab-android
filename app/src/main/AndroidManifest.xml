@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.betalab.android">
+<manifest package="com.betalab.android"
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
   <application
-      android:name=".BetalabApplication"
-      android:allowBackup="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:supportsRtl="true"
+    android:name=".BetalabApplication"
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <activity
+      android:name=".loginscreen.GoogleSignInActivity"
       android:theme="@style/AppTheme">
-    <activity android:name=".loginscreen.GoogleSignInActivity">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".mainscreen.MainScreenActivity">
-    </activity>
+    <activity android:name=".loginscreen.LoginActivity" />
+    <!-- Facebook Configuration -->
+    <meta-data
+      android:name="com.facebook.sdk.ApplicationId"
+      android:value="@string/facebook_app_id" />
+    <activity android:name=".mainscreen.MainScreenActivity"/>
 
     <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,8 +43,8 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
     <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="@string/google_maps_key"/>
+      android:name="com.google.android.geo.API_KEY"
+      android:value="@string/google_maps_key" />
 
   </application>
 

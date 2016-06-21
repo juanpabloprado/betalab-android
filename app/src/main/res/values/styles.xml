@@ -8,6 +8,25 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="LoginTheme" parent="@style/AppTheme">
+    <!--<item name="colorControlNormal">@color/light_gray</item>-->
+    <item name="colorControlActivated">@android:color/white</item>
+  </style>
+
+
+  <style name="LoginTheme.Button" parent="@android:style/Widget.Button">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">48dp</item>
+    <item name="android:background">@drawable/login_button_background_selector</item>
+    <item name="android:textColor">@color/login_display_text</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
+  <style name="LoginTheme.Button.ThirdPartyLogin" parent="LoginTheme.Button">
+    <item name="android:paddingLeft">16dp</item>
+    <item name="android:paddingRight">24dp</item>
+  </style>
+
   <style name="WarnButton" parent="Widget.AppCompat.Button.Colored">
     <item name="colorButtonNormal">@color/material_red_a200</item>
     <item name="android:textColor">@android:color/white</item>
@@ -22,7 +41,7 @@
   </style>
 
   <!-- Light EditTexts -->
-  <style name="ThemeOverlay.MyLightEditText" parent="ThemeOverlay.AppCompat.Dark"/>
+  <style name="ThemeOverlay.MyLightEditText" parent="ThemeOverlay.AppCompat.Dark" />
 
   <style name="ThemeOverlay.MyTextDetail" parent="AppTheme">
     <item name="android:layout_width">wrap_content</item>
