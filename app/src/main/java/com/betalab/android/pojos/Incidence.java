@@ -11,7 +11,7 @@ import java.util.Map;
 public class Incidence implements Serializable {
 
   public String description;
-  public Map gmap;
+  public GeoData gmap;
   public List<HistoryEvent> history;
   public String picture;
   public CitizenData reported_by;
