@@ -32,19 +32,14 @@ public class BaseActivity extends AppCompatActivity {
   }
 
   public void showProgressDialog() {
-    //if (mProgressDialog == null) {
-    //    mProgressDialog = new ProgressDialog(this);
-    //    mProgressDialog.setMessage(getString(R.string.loading));
-    //    mProgressDialog.setIndeterminate(true);
-    //}
-    //
-    //mProgressDialog.show();
+    mProgressDialog = ProgressDialog.show(this, null,
+        getString(R.string.progress_dialog_loading), true, false);
   }
 
   public void hideProgressDialog() {
-    //if (mProgressDialog != null && mProgressDialog.isShowing()) {
-    //    mProgressDialog.hide();
-    //}
+    if (mProgressDialog != null && mProgressDialog.isShowing()) {
+        mProgressDialog.dismiss();
+    }
   }
 
   @Override public void onDestroy() {
