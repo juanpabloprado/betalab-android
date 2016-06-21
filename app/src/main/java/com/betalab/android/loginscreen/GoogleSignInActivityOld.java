@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.betalab.android.R;
 import com.betalab.android.base.activity.BaseActivity;
@@ -45,7 +44,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import timber.log.Timber;
 
-public class GoogleSignInActivity extends BaseActivity
+public class GoogleSignInActivityOld extends BaseActivity
     implements GoogleApiClient.OnConnectionFailedListener {
 
   private static final int RC_SIGN_IN = 9001;
@@ -58,7 +57,6 @@ public class GoogleSignInActivity extends BaseActivity
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_google);
-    ButterKnife.bind(this);
 
     buildGoogleApiClient();
 
@@ -136,10 +134,10 @@ public class GoogleSignInActivity extends BaseActivity
             // signed in user can be handled in the listener.
             if (!task.isSuccessful()) {
               Timber.w(task.getException(), "signInWithCredential");
-              Toast.makeText(GoogleSignInActivity.this, "Authentication failed.",
+              Toast.makeText(GoogleSignInActivityOld.this, "Authentication failed.",
                   Toast.LENGTH_SHORT).show();
             } else {
-              NavigationUtil.goToMainScreenActivity(GoogleSignInActivity.this);
+              NavigationUtil.goToMainScreenActivity(GoogleSignInActivityOld.this);
               finish();
             }
             hideProgressDialog();

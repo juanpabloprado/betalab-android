@@ -19,20 +19,25 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity
-      android:name=".loginscreen.GoogleSignInActivity"
-      android:theme="@style/AppTheme">
+      android:name=".loginscreen.DispatchAcitvity"
+      android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".loginscreen.LoginActivity" />
+    <activity
+      android:name=".loginscreen.LoginActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/LoginTheme" />
+    <!--<activity android:name=".loginscreen.GoogleSignInActivity"-->
+    <!--android:screenOrientation="portrait"/>-->
     <!-- Facebook Configuration -->
     <meta-data
       android:name="com.facebook.sdk.ApplicationId"
       android:value="@string/facebook_app_id" />
-    <activity android:name=".mainscreen.MainScreenActivity"/>
+    <activity android:name=".mainscreen.MainScreenActivity" />
 
     <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -24,14 +24,26 @@
     android:orientation="vertical">
 
     <Button
-      android:id="@+id/facebook_login"
+      android:id="@+id/sign_in_button"
+      style="@style/LoginTheme.Button.GoogleLogin"
+      android:layout_marginBottom="@dimen/spacing_xlarge"
+      android:layout_marginTop="@dimen/spacing_medium"
+      android:background="@drawable/google_login_button_background_selector"
+      android:drawableLeft="@drawable/google_login_logo"
+      android:drawableStart="@drawable/google_login_logo"
+      android:text="@string/google_login_button_label"
+      android:textAllCaps="true" />
+
+    <com.facebook.login.widget.LoginButton
+      android:id="@+id/button_facebook_login"
       style="@style/LoginTheme.Button.ThirdPartyLogin"
       android:layout_marginBottom="@dimen/spacing_xlarge"
       android:layout_marginTop="@dimen/spacing_medium"
       android:background="@drawable/facebook_login_button_background_selector"
       android:drawableLeft="@drawable/facebook_login_logo"
       android:drawableStart="@drawable/facebook_login_logo"
-      android:text="@string/facebook_login_button_label" />
+      android:text="@string/facebook_login_button_label"
+      android:visibility="gone" />
 
 
   </LinearLayout>
