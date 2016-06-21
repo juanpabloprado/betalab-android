@@ -1,4 +1,4 @@
-package com.betalab.android.MainScreen;
+package com.betalab.android.mainscreen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

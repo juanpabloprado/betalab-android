@@ -1,4 +1,4 @@
-package com.betalab.android.MainScreen;
+package com.betalab.android.mainscreen;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
