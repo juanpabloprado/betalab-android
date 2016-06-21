@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Betalab Android</string>
+  <string name="app_name">Reportify</string>
 
   <string name="device_offline_message">"Your device appears to be offline. Some content may be unavailable."</string>
 
