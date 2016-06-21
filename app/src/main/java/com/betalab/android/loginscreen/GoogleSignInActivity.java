@@ -22,6 +22,9 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.betalab.android.R;
 import com.betalab.android.base.activity.BaseActivity;
 import com.betalab.android.util.NavigationUtil;
@@ -42,56 +45,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import timber.log.Timber;
 
-/**
- * Demonstrate Firebase Authentication using a Google ID Token.
- */
 public class GoogleSignInActivity extends BaseActivity
-    implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    implements GoogleApiClient.OnConnectionFailedListener {
 
   private static final int RC_SIGN_IN = 9001;
-
-  // [START declare_auth]
+  @BindView(R.id.status) TextView mStatusTextView;
+  @BindView(R.id.detail) TextView mDetailTextView;
   private FirebaseAuth mAuth;
-  // [END declare_auth]
-
-  // [START declare_auth_listener]
   private FirebaseAuth.AuthStateListener mAuthListener;
-  // [END declare_auth_listener]
-
   private GoogleApiClient mGoogleApiClient;
-  private TextView mStatusTextView;
-  private TextView mDetailTextView;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_google);
+    ButterKnife.bind(this);
 
-    // Views
-    mStatusTextView = (TextView) findViewById(R.id.status);
-    mDetailTextView = (TextView) findViewById(R.id.detail);
+    buildGoogleApiClient();
 
-    // Button listeners
-    findViewById(R.id.sign_in_button).setOnClickListener(this);
-    findViewById(R.id.sign_out_button).setOnClickListener(this);
-    findViewById(R.id.disconnect_button).setOnClickListener(this);
-
-    // [START config_signin]
-    // Configure Google Sign In
-    GoogleSignInOptions gso =
-        new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
-            getString(R.string.default_web_client_id)).requestEmail().build();
-    // [END config_signin]
-
-    mGoogleApiClient =
-        new GoogleApiClient.Builder(this).enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-            .build();
-
-    // [START initialize_auth]
     mAuth = FirebaseAuth.getInstance();
-    // [END initialize_auth]
-
-    // [START auth_state_listener]
     mAuthListener = new FirebaseAuth.AuthStateListener() {
       @Override public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -102,31 +73,37 @@ public class GoogleSignInActivity extends BaseActivity
           // User is signed out
           Timber.d("onAuthStateChanged:signed_out");
         }
-        // [START_EXCLUDE]
         updateUI(user);
-        // [END_EXCLUDE]
       }
     };
-    // [END auth_state_listener]
   }
 
-  // [START on_start_add_listener]
+  private void buildGoogleApiClient() {
+    GoogleSignInOptions gso = configureGoogleSignIn();
+
+    mGoogleApiClient =
+        new GoogleApiClient.Builder(this).enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .build();
+  }
+
+  @NonNull private GoogleSignInOptions configureGoogleSignIn() {
+    return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
+        getString(R.string.default_web_client_id)).requestEmail().build();
+  }
+
   @Override public void onStart() {
     super.onStart();
     mAuth.addAuthStateListener(mAuthListener);
   }
-  // [END on_start_add_listener]
 
-  // [START on_stop_remove_listener]
   @Override public void onStop() {
     super.onStop();
     if (mAuthListener != null) {
       mAuth.removeAuthStateListener(mAuthListener);
     }
   }
-  // [END on_stop_remove_listener]
 
-  // [START onactivityresult]
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
@@ -139,20 +116,14 @@ public class GoogleSignInActivity extends BaseActivity
         firebaseAuthWithGoogle(account);
       } else {
         // Google Sign In failed, update UI appropriately
-        // [START_EXCLUDE]
         updateUI(null);
-        // [END_EXCLUDE]
       }
     }
   }
-  // [END onactivityresult]
 
-  // [START auth_with_google]
   private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
     Timber.d("firebaseAuthWithGoogle: %s", acct.getId());
-    // [START_EXCLUDE silent]
     showProgressDialog();
-    // [END_EXCLUDE]
 
     AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
     mAuth.signInWithCredential(credential)
@@ -171,22 +142,17 @@ public class GoogleSignInActivity extends BaseActivity
               NavigationUtil.goToMainScreenActivity(GoogleSignInActivity.this);
               finish();
             }
-            // [START_EXCLUDE]
             hideProgressDialog();
-            // [END_EXCLUDE]
           }
         });
   }
-  // [END auth_with_google]
 
-  // [START signin]
-  private void signIn() {
+  @OnClick(R.id.sign_in_button) void signIn() {
     Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
     startActivityForResult(signInIntent, RC_SIGN_IN);
   }
-  // [END signin]
 
-  private void signOut() {
+  @OnClick(R.id.sign_out_button) void signOut() {
     // Firebase sign out
     mAuth.signOut();
 
@@ -198,7 +164,7 @@ public class GoogleSignInActivity extends BaseActivity
     });
   }
 
-  private void revokeAccess() {
+  @OnClick(R.id.disconnect_button) void revokeAccess() {
     // Firebase sign out
     mAuth.signOut();
 
@@ -233,19 +199,5 @@ public class GoogleSignInActivity extends BaseActivity
     // be available.
     Timber.d("onConnectionFailed: %s", connectionResult);
     Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
-  }
-
-  @Override public void onClick(View v) {
-    switch (v.getId()) {
-      case R.id.sign_in_button:
-        signIn();
-        break;
-      case R.id.sign_out_button:
-        signOut();
-        break;
-      case R.id.disconnect_button:
-        revokeAccess();
-        break;
-    }
   }
 }
