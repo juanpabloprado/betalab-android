@@ -7,10 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import com.betalab.android.R;
 
-/**
- * Created by Shekomaru on 6/20/16.
- */
 public class MainScreenActivity extends AppCompatActivity {
+
+  MainScreenPagerAdapter mainScreenPagerAdapter;
 
   ViewPager mainScreenViewPager;
   TabLayout mainScreenTabLayout;
@@ -27,7 +26,11 @@ public class MainScreenActivity extends AppCompatActivity {
   }
 
   private void setupViewPager() {
-    mainScreenViewPager.setAdapter(new MainScreenPagerAdapter(getSupportFragmentManager()));
+    mainScreenPagerAdapter = new MainScreenPagerAdapter(this, getSupportFragmentManager());
+    mainScreenViewPager.setAdapter(mainScreenPagerAdapter);
     mainScreenTabLayout.setupWithViewPager(mainScreenViewPager);
+    for (int i = 0; i < mainScreenTabLayout.getTabCount(); i++) {
+      mainScreenTabLayout.getTabAt(i).setIcon(mainScreenPagerAdapter.getIcon(i));
+    }
   }
 }
