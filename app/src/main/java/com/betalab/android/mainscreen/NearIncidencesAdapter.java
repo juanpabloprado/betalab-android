@@ -37,6 +37,7 @@ public class NearIncidencesAdapter extends RecyclerView.Adapter<NearIncidencesAd
     holder.description.setText(incidences.get(position).description);
     Picasso.with(holder.title.getContext())
         .load(incidences.get(position).getPicture())
+        .placeholder(R.mipmap.ic_launcher)
         .into(holder.preview);
   }
 

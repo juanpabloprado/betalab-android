@@ -116,6 +116,7 @@ public class MainScreenMapFragment extends Fragment
       @Override public void onMapClick(LatLng latLng) {
         Log.d(TAG, "onMapClick() called with: " + "latLng = [" + latLng + "]");
         getView().findViewById(R.id.ll_main_map).setVisibility(View.GONE);
+        getView().findViewById(R.id.fab_mainscreen_map_add).setVisibility(View.VISIBLE);
         //getView().findViewById(ddf)
       }
     });
@@ -126,6 +127,7 @@ public class MainScreenMapFragment extends Fragment
           Incidence incidence = incidenceMap.get(marker);
           // TODO: 6/21/16 Show things and stuff
           getView().findViewById(R.id.ll_main_map).setVisibility(View.VISIBLE);
+          getView().findViewById(R.id.fab_mainscreen_map_add).setVisibility(View.GONE);
           ((TextView) getView().findViewById(R.id.tv_main_map_title)).setText(incidence.title);
           ((TextView) getView().findViewById(R.id.tv_main_map_description)).setText(
               incidence.description);
@@ -135,6 +137,7 @@ public class MainScreenMapFragment extends Fragment
 
           Picasso.with(getContext())
               .load(incidence.getPicture())
+              .placeholder(R.mipmap.ic_launcher)
               .into((ImageView) getView().findViewById(R.id.iv_main_map_image));
         }
         return false;
