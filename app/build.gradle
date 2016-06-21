@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
   compileSdkVersion 23
@@ -10,6 +11,7 @@ android {
     targetSdkVersion 23
     versionCode 1
     versionName "1.0"
+    multiDexEnabled true
   }
   buildTypes {
     release {
@@ -19,18 +21,32 @@ android {
   }
 }
 
-final GOOGLE_PLAY_SERVICES_VERSION = '8.4.0'
+final GOOGLE_PLAY_SERVICES_VERSION = '9.0.2'
 final SUPPORT_LIB_VERSION = '23.4.0'
 
 dependencies {
+  compile 'com.android.support:multidex:1.0.1'
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'
   compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
   compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
+  compile "com.android.support:support-v4:${SUPPORT_LIB_VERSION}"
 
   compile 'com.google.firebase:firebase-core:9.0.2'
   compile 'com.google.firebase:firebase-database:9.0.2'
-  compile 'com.google.android.gms:play-services:9.0.2'
+  compile "com.google.android.gms:play-services-maps:${GOOGLE_PLAY_SERVICES_VERSION}"
+  // Single target that includes all FirebaseUI libraries
+  compile 'com.firebaseui:firebase-ui:0.4.1'
+  // FirebaseUI Database only
+  compile 'com.firebaseui:firebase-ui-database:0.4.1'
+  // FirebaseUI Auth only
+  compile 'com.firebaseui:firebase-ui-auth:0.4.1'
+
+  compile 'com.jakewharton:butterknife:8.0.1'
+  apt 'com.jakewharton:butterknife-compiler:8.0.1'
+  compile 'com.jakewharton.timber:timber:4.1.2'
+
+  compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 
