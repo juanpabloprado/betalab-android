@@ -39,4 +39,7 @@
   <string name="title_section1">Mapa</string>
   <string name="title_section2">Feed</string>
   <string name="title_section3">Usuario</string>
+  <string name="avatar_description">Avatar</string>
+  <string name="user_badges_title_text">Insignias</string>
+  <string name="user_best_friends_title_text">Mejores amigos</string>
 </resources>

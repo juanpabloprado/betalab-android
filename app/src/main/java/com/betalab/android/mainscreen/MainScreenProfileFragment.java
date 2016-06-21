@@ -6,16 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import com.betalab.android.R;
 
-/**
- * Created by Shekomaru on 6/20/16.
- */
 public class MainScreenProfileFragment extends Fragment {
+
+  private Unbinder unbinder;
 
   @Nullable @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.activity_main, container, false);
+    View rootView = inflater.inflate(R.layout.fragment_mainscreen_user, container, false);
+    unbinder = ButterKnife.bind(this, rootView);
+    return rootView;
+  }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+    unbinder.unbind();
   }
 }

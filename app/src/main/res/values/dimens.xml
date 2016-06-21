@@ -14,4 +14,6 @@
   <dimen name="spacing_xlarge">32dp</dimen>
 
   <dimen name="row_main_height">100dp</dimen>
+  <dimen name="avatar_size">128dp</dimen>
+  <dimen name="divider_height">1dp</dimen>
 </resources>
