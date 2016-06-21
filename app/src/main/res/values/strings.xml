@@ -35,4 +35,7 @@
   <string name="logo_content_description">Logo</string>
   <string name="facebook_login_button_label">Log in with Facebook</string>
   <string name="google_login_button_label">Log in with Google</string>
+  <string name="title_section1">Map</string>
+  <string name="title_section2">Feed</string>
+  <string name="title_section3">User</string>
 </resources>
