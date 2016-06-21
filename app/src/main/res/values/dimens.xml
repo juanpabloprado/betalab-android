@@ -12,4 +12,6 @@
   <dimen name="spacing_medium">8dp</dimen>
   <dimen name="spacing_large">16dp</dimen>
   <dimen name="spacing_xlarge">32dp</dimen>
+
+  <dimen name="row_main_height">100dp</dimen>
 </resources>

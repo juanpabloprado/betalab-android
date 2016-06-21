@@ -10,13 +10,13 @@ import java.util.Map;
  */
 public class Incidence implements Serializable {
 
-  String description;
-  Map gmap;
-  List<HistoryEvent> history;
-  String picture;
-  CitizenData reported_by;
-  List<CitizenData> support;
-  String title;
+  public String description;
+  public Map gmap;
+  public List<HistoryEvent> history;
+  public String picture;
+  public CitizenData reported_by;
+  public List<CitizenData> support;
+  public String title;
 
   @Exclude public Map<String, Object> toMap() {
     return null;

@@ -3,12 +3,12 @@ package com.betalab.android.mainscreen;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.betalab.android.R;
-import java.util.TimerTask;
 
 /**
  * Created by Shekomaru on 6/20/16.
@@ -26,6 +26,7 @@ public class MainScreenListFragment extends Fragment {
 
     RecyclerView mainRecyclerView = (RecyclerView) view;
 
-
+    mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    mainRecyclerView.setAdapter(new NearIncidencesAdapter(5));
   }
 }

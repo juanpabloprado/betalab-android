@@ -42,7 +42,7 @@ public class TestFirebaseFragment extends Fragment {
 
     mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-    mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+/*    mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
       @Override public void onDataChange(DataSnapshot dataSnapshot) {
         Log.d(TAG, "onDataChange(father) called with: " + "dataSnapshot = [" + dataSnapshot + "]");
 
@@ -84,7 +84,7 @@ public class TestFirebaseFragment extends Fragment {
       @Override public void onCancelled(DatabaseError databaseError) {
         Log.d(TAG, "onCancelled(father) called with: " + "databaseError = [" + databaseError + "]");
       }
-    });
+    })*/;
     mDatabaseReference.child("betalabs-14933")
         .addListenerForSingleValueEvent(new ValueEventListener() {
           @Override public void onDataChange(DataSnapshot dataSnapshot) {
