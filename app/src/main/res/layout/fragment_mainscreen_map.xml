@@ -12,6 +12,17 @@
       android:layout_height="match_parent"
       />
 
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/fab_mainscreen_map_add"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_margin="16dp"
+      android:src="@android:drawable/btn_plus"
+      />
+
   <!--TODO: Ver el cómo hacer que la parte que se puede arrastrar sea más amplia, por que no manches, es demasiado chica, y el usuario podría no deducir su funcionamiento-->
   <!--<LinearLayout
       android:layout_width="60dp"
