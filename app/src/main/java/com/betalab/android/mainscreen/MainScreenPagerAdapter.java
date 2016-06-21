@@ -35,6 +35,7 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter
       incidences.add(incidence);
 
       ((MainScreenMapFragment) fragments[0]).onDataChange();
+      ((MainScreenListFragment) fragments[1]).onDataChange();
 
       /*if (mMap != null) {
         loadGooglePins(mMap);
@@ -65,7 +66,7 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter
 
     fragments[0] = MainScreenMapFragment.newInstance(this);
     //fragments[0].setRetainInstance(true);
-    fragments[1] = new MainScreenListFragment();
+    fragments[1] = MainScreenListFragment.newInstance(this);
     fragments[2] = new MainScreenProfileFragment();
     //fragments[2].setRetainInstance(true);
 
