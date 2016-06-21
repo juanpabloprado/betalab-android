@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.betalab.android.loginScreen;
+package com.betalab.android.loginscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
